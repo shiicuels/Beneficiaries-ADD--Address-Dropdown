@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficiaries [ADD] - Address Dropdown</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+</head>
+
+
+<body class="container">
+    
+    <form class="form-address">
+
+        <!-- Permanent Address -->
+        <h4 class="my-3 mt-5" style="color: #62896d">Permanent Address</h4>
+
+        <div class="form-group mb-3 row">
+            <!-- Address Line 1 -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="permanent_address_line_one" class="form-label">*Address Line 1</label>
+                    <input class="form-control" name="permanent_address_line_one" id="permanent_address_line_one" type="text" required>
+
+                    <!-- Dev Shiela Note: I temporarily removed the values on the inputs, kindly re-add
+                    value="{{ old('permanent_address_line_one') }}" -->
+
+                    <!-- @error('permanent_address_line_one')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Address Line 2 -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="permanent_address_line_two" class="form-label">Address Line 2 (Optional)</label>
+                    <input class="form-control" name="permanent_address_line_two" id="permanent_address_line_two" type="text">
+                    <!-- @error('permanent_address_line_two')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 row">
+
+            <!-- Region -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="permanent_region" class="form-label">*Region</label>
+                    <input type="hidden" name="permanent_region" value=""/>
+                    <select class="form-control" id="permanent_region" value="{{ old('permanent_region') }}">
+                        <option value="" disabled selected>Select Region</option>
+                    </select>
+                    <!-- @error('permanent_region')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Province -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="permanent_province" class="form-label">*Province</label>
+                    <input type="hidden" name="permanent_province" value=""/>
+                    <select class="form-control" id="permanent_province" value="{{ old('permanent_province') }}">
+                        <option value="" disabled selected>Select Province</option>
+                    </select>
+                    <!-- @error('permanent_province')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 row">
+
+            <!-- City -->
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="permanent_city" class="form-label">City</label>
+                    <input type="hidden" name="permanent_city"/>
+                    <select class="form-control" id="permanent_city" value="{{ old('permanent_city') }}">
+                        <option value="" disabled selected>Select City</option>
+                    </select>
+                    <!-- @error('permanent_city')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Barangay -->
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="permanent_barangay" class="form-label">Barangay</label>
+                    <input type="hidden" name="permanent_barangay"/>
+                    <select class="form-control" id="permanent_barangay" value="{{ old('permanent_barangay') }}">
+                        <option value="" disabled selected>Select Barangay</option>
+                    </select>
+                    <!-- @error('permanent_barangay')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror -->
+                    </div>
+            </div>
+
+            <!-- Postal Code -->
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="permanent_postal_code" class="form-label">*Postal Code</label>
+                    <input class="form-control" name="permanent_postal_code" id="permanent_postal_code" type="number" required
+                        value="{{ old('permanent_postal_code') }}" placeholder="Must be 4 digits">
+                    <!-- @error('permanent_postal_code')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror -->
+                </div>
+            </div>
+        </div>
+        <!-- End Permanent Address -->
+
+
+
+        <!-- Present Address -->
+        <h4 class="mt-5" style="color: #62896d">Present Address</h4>
+
+        <!-- Dev note: Might delete this checkbox below -->
+        <div class="form-check form-switch mb-4" dir="ltr">
+            <input type="checkbox" name="use_permanent_address" class="form-check-input" id="use_permanent_address" onclick="EnableDisableTextBox(this)"
+                value="{{ old('use_permanent_address') }}">
+            <label class="form-check-label" for="use_permanent_address">Same as permanent address</label>
+        </div>
+
+        <div class="form-group mb-3 row">
+            <!-- Address Line 1 -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="present_address_line_one" class="form-label">*Address Line 1</label>
+                    <input class="form-control" name="present_address_line_one" id="present_address_line_one" type="text" required>
+                    <!-- @error('present_address_line_one')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Address Line 2 -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="present_address_line_two" class="form-label">Address Line 2 (Optional)</label>
+                    <input class="form-control" name="present_address_line_two" id="present_address_line_two" type="text">
+                    <!-- @error('present_address_line_two')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 row">
+            <!-- Region -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="present_region" class="form-label">*Region</label>
+                    <input type="hidden" name="present_region"/>
+                    <select class="form-control" id="present_region" value="{{ old('present_region') }}" required>
+                        <option value="" disabled selected>Select Region</option>
+                    </select>
+                    <!-- @error('present_region')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Province -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="present_province" class="form-label">*Province</label>
+                    <input type="hidden" name="present_province"/>
+                    <select class="form-control" id="present_province" value="{{ old('present_province') }}">
+                        <option value="" disabled selected>Select Province</option>
+                    </select>
+                    <!-- @error('present_province')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 row">
+
+            <!-- City -->
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="present_city" class="form-label">City</label>
+                    <input type="hidden" name="present_city"/>
+                    <select class="form-control" id="present_city" value="{{ old('present_city') }}">
+                        <option value="" disabled selected>Select City</option>
+                    </select>
+                    <!-- @error('present_city')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Barangay -->
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="present_barangay" class="form-label">Barangay</label>
+                    <input type="hidden" name="present_barangay"/>
+                    <select class="form-control" id="present_barangay" value="{{ old('present_barangay') }}">
+                        <option value="" disabled selected>Select Barangay</option>
+                    </select>
+                    <!-- @error('present_barangay')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Postal Code -->
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="present_postal_code" class="form-label">*Postal Code</label>
+                    <input class="form-control" name="present_postal_code" id="present_postal_code" type="number" required
+                        value="{{ old('present_postal_code') }}" placeholder="Must be 4 digits">
+                    <!-- @error('present_postal_code')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+        </div>
+        <!-- End Present Address -->
+
+
+        <!-- Provincial Address -->
+        <h4 class="mt-5" style="color: #62896d">Provincial Address (Optional)</h4>
+
+        <!-- Dev note: Might delete this checkbox below -->
+        <div class="form-check form-switch mb-4" dir="ltr">
+            <input type="checkbox" name="no_provincial_address" class="form-check-input" id="no_provincial_address" onclick="EnableDisableTextBox2(this)">
+            <label class="form-check-label" for="no_provincial_address">No Provincial Address</label>
+        </div>
+
+        <div class="form-group mb-3 row">
+            <!-- Address Line 1 -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="provincial_address_line_one" class="form-label">*Address Line 1</label>
+                    <input class="form-control" name="provincial_address_line_one" id="provincial_address_line_one" type="text" required>
+                    <!-- @error('provincial_address_line_one')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Address Line 2 -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="provincial_address_line_two" class="form-label">Address Line 2 (Optional)</label>
+                    <input class="form-control" name="provincial_address_line_two" id="provincial_address_line_two" type="text">
+                    <!-- @error('provincial_address_line_two')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="form-group mb-3 row">
+            <!-- Region -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="provincial_region" class="form-label">*Region</label>
+                    <input type="hidden" name="provincial_region"/>
+                    <select class="form-control" id="provincial_region" value="{{ old('provincial_region') }}">
+                        <option value="" disabled selected>Select Region</option>
+                    </select>
+                    <!-- @error('provincial_region')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Province -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="provincial_province" class="form-label">*Province</label>
+                    <input type="hidden" name="provincial_province"/>
+                    <select class="form-control" id="provincial_province" value="{{ old('provincial_province') }}">
+                        <option value="" disabled selected>Select Province</option>
+                    </select>
+                    <!-- @error('provincial_province')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 row">
+            <!-- City -->
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="provincial_city" class="form-label">City</label>
+                    <input type="hidden" name="provincial_city"/>
+                    <select class="form-control" id="provincial_city" value="{{ old('provincial_city') }}">
+                        <option value="" disabled selected>Select City</option>
+                    </select>
+                    <!-- @error('provincial_city')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Barangay -->
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="provincial_barangay" class="form-label">Barangay</label>
+                    <input type="hidden" name="provincial_barangay"/>
+                    <select class="form-control" id="provincial_barangay" value="{{ old('provincial_barangay') }}">
+                        <option value="" disabled selected>Select Barangay</option>
+                    </select>
+                    <!-- @error('provincial_barangay')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+            <!-- Postal Code -->
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="provincial_postal_code" class="form-label">*Postal Code</label>
+                    <input class="form-control" name="provincial_postal_code" id="provincial_postal_code" type="number" required
+                        value="{{ old('provincial_postal_code') }}" placeholder="Must be 4 digits">
+                    <!-- @error('provincial_postal_code')
+                    <div class="text-danger">
+                        {{ $message }}
+                    </div>
+                    @enderror -->
+                </div>
+            </div>
+
+        </div>
+        <!-- End Provincial Address -->
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="places_api.js"></script>
+
+</body>
+</html>
